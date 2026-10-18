@@ -4,6 +4,7 @@ from nlplib.write import write_file
 from nlplib.config import INPUT_DIR, OUTPUT_DIR
 
 def convert_to_wav(file_name: str, file_format: str, output_format = "wav"):
+    
     input_path = Path(INPUT_DIR) / f"{file_name}.{file_format}"
     output_path = Path(OUTPUT_DIR) / f"{file_name}.{output_format}"
     

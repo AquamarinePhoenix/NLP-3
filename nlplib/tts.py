@@ -8,7 +8,7 @@ def load_yourtts():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     write_file(f"Using device: {device}")
     
-    return TTS(model_name=MODEL_NAME).to(device)
+    return TTS(model_name = MODEL_NAME).to(device)
 
 def get_supported_languages(tts):
     return list(tts.languages or [])
@@ -26,7 +26,7 @@ def output_language_report():
         ),
     }
 
-    write_file(json.dumps(report, indent=2, ensure_ascii=False))
+    write_file(json.dumps(report, indent = 2, ensure_ascii = False))
 
 def test_speech(file_name: str, output_file_name: str = "test", file_format: str = "wav"):
     tts = load_yourtts()

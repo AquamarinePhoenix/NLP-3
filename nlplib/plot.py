@@ -98,7 +98,7 @@ def save_plot(fig, output_dir, filename):
     )
     plt.close(fig)
 
-def plot_waveforms(reference, ref_sr, synthesized, syn_sr, output_dir):
+def plot_waveforms(reference, ref_sr, synthesized, syn_sr, output_dir, language: str = "en"):
     theme = apply_powerbi_theme()
     colors = theme["colors"]
 
@@ -110,10 +110,10 @@ def plot_waveforms(reference, ref_sr, synthesized, syn_sr, output_dir):
     )
 
     series = [
-        (axes[0], reference, ref_sr, "Natural reference speech", colors[0]),
+        (axes[0], reference, ref_sr, f"Natural {language} speech", colors[0]),
         (
             axes[1], synthesized, syn_sr,
-            "YourTTS synthesized speech", colors[2 % len(colors)]
+            f"YourTTS synthesized {language} speech", colors[2 % len(colors)]
         ),
     ]
 
@@ -125,9 +125,9 @@ def plot_waveforms(reference, ref_sr, synthesized, syn_sr, output_dir):
 
         ax.set_ylim(-1.05, 1.05)
 
-    save_plot(fig, output_dir, "english_waveforms.png")
+    save_plot(fig, output_dir, f"{language}_waveforms.png")
 
-def plot_spectra(reference, ref_sr, synthesized, syn_sr, output_dir):
+def plot_spectra(reference, ref_sr, synthesized, syn_sr, output_dir, language: str = "en"):
     theme = apply_powerbi_theme()
     colors = theme["colors"]
 
@@ -138,10 +138,10 @@ def plot_spectra(reference, ref_sr, synthesized, syn_sr, output_dir):
     )
 
     series = [
-        (axes[0], reference, ref_sr, "Natural reference spectrum", colors[0]),
+        (axes[0], reference, ref_sr, f"Natural {language} spectrum", colors[0]),
         (
             axes[1], synthesized, syn_sr,
-            "YourTTS synthesized spectrum", colors[2 % len(colors)]
+            f"YourTTS synthesized {language} spectrum", colors[2 % len(colors)]
         ),
     ]
 
@@ -167,9 +167,9 @@ def plot_spectra(reference, ref_sr, synthesized, syn_sr, output_dir):
             theme,
         )
 
-    save_plot(fig, output_dir, "english_spectra.png")
+    save_plot(fig, output_dir, f"{language}_spectra.png")
 
-def plot_f0(reference, ref_sr, synthesized, syn_sr, output_dir):
+def plot_f0(reference, ref_sr, synthesized, syn_sr, output_dir, language: str = "en"):
     theme = apply_powerbi_theme()
     colors = theme["colors"]
 
@@ -180,10 +180,10 @@ def plot_f0(reference, ref_sr, synthesized, syn_sr, output_dir):
     )
 
     series = [
-        (axes[0], reference, ref_sr, "Natural reference F0", colors[0]),
+        (axes[0], reference, ref_sr, f"Natural {language} F0", colors[0]),
         (
             axes[1], synthesized, syn_sr,
-            "YourTTS synthesized F0", colors[2 % len(colors)]
+            f"YourTTS synthesized {language} F0", colors[2 % len(colors)]
         ),
     ]
 
@@ -220,4 +220,4 @@ def plot_f0(reference, ref_sr, synthesized, syn_sr, output_dir):
 
         style_axis(ax, title, "Time (seconds)", "F0 (Hz)", theme)
 
-    save_plot(fig, output_dir, "english_f0.png")
+    save_plot(fig, output_dir, f"{language}_f0.png")
