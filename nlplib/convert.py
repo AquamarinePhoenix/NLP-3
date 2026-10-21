@@ -1,5 +1,6 @@
 import subprocess
 from pathlib import Path
+import imageio_ffmpeg
 from nlplib.write import write_file
 from nlplib.config import INPUT_DIR, OUTPUT_DIR
 
@@ -12,7 +13,7 @@ def convert_to_wav(file_name: str, file_format: str, output_format = "wav"):
 
     subprocess.run(
         [
-            "ffmpeg",
+            imageio_ffmpeg.get_ffmpeg_exe(),
             "-y",
             "-i", str(input_path),
             "-ac", "1",

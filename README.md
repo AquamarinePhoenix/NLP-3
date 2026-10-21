@@ -4,9 +4,26 @@ Objective: to investigate the performance of a pretrained YourTTS model on an un
 
 1. Preparation for Work
 
-• For this task, Python 3.10 is recommended.
+• Python 3.14 can be used with the maintained `coqui-tts` package.
 
-• Install TTS library: pip install TTS
+Install the maintained Coqui package and its PyTorch audio codec support:
+
+```powershell
+python -m pip install "coqui-tts[codec]"
+python -m pip install "transformers==4.57.5"
+python -m pip install imageio-ffmpeg pandas
+```
+
+`coqui-tts` exposes the same `TTS.api` module used by this project. Pinning
+Transformers avoids an incompatibility with newer Transformers releases.
+`imageio-ffmpeg` supplies the FFmpeg executable needed for M4A-to-WAV
+conversion without requiring a system-wide FFmpeg installation.
+Verify the installation with:
+
+```powershell
+python --version
+python -c "from TTS.api import TTS; print('TTS import successful')"
+```
 
 • Load the pretrained YourTTS model:
 

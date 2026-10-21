@@ -25,7 +25,7 @@ def zip_to_df(path):
     return pd.DataFrame(entries)
 
 def access_dataset():
-    file_loc = INPUT_DIR / "emo-wavs.zip.009"
+    file_loc = INPUT_DIR / "emo-wavs.zip-001.009"
     metadata_loc = INPUT_DIR / "metadata_of_EMO_dataset.csv"
 
     idx = zip_to_df(file_loc)
@@ -72,7 +72,7 @@ def access_dataset():
     return idx, meta, coverage
 
 def prepare_dataset():
-    archive_path = INPUT_DIR / "emo-wavs.zip.009"
+    archive_path = INPUT_DIR / "emo-wavs.zip-001.009"
 
     idx, meta, _ = access_dataset()
 
