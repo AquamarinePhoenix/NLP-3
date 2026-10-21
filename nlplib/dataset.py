@@ -1,4 +1,7 @@
 import random
+import os
+import shutil
+import stat
 import soundfile as sf
 import matplotlib.pyplot as plt
 import struct
@@ -6,6 +9,10 @@ import pandas as pd
 import zlib
 from nlplib.config import INPUT_DIR, SPEAKER_ID, EMOTION, RANDOM_SEED, DATASET_DIR
 from nlplib.write import write_file
+
+def _remove_readonly(func, path, _):
+    os.chmod(path, stat.S_IWRITE)
+    func(path)
 
 def zip_to_df(path):
     size = path.stat().st_size
@@ -100,8 +107,7 @@ def prepare_dataset():
         )
 
     if DATASET_DIR.exists():
-        import shutil
-        shutil.rmtree(DATASET_DIR)
+        shutil.rmtree(DATASET_DIR, onerror=_remove_readonly)
 
     wav_dir = DATASET_DIR / "wavs"
     wav_dir.mkdir(parents=True)
